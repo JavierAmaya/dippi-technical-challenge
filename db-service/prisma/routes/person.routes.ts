@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const router = express.Router();
 const prisma =  new PrismaClient();
 const { check } = require('express-validator');
+const hello = require('hello-service');
 
 
 router.get('/', async (req: Request, res: Response) => {
@@ -58,7 +59,11 @@ router.get('/helloWorld', async (req: Request, res: Response) => {
     if (person.length == 0) {
         res.status(404).send('No person found')
     } 
-    res.send(person)
+
+    // calling hello-service
+    const resp = hello(person[0].name)
+
+    res.send(resp)
 })
 
 
