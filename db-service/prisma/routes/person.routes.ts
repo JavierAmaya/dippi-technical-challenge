@@ -57,13 +57,13 @@ router.get('/helloWorld', async (req: Request, res: Response) => {
     const person  =  await getLastItem()
 
     if (person.length == 0) {
-        res.status(404).send('No person found')
+        res.status(404).send({"msg": "No person found"})
     } 
 
     // calling hello-service
     const resp = hello(person[0].name)
 
-    res.send(resp)
+    res.send({"msg": resp})
 })
 
 
