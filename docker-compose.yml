@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  db: 
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: localUser
+      POSTGRES_PASSWORD: localPass
+      POSTGRES_DB: localDb
+
+volumes:  
+  postgres_data:

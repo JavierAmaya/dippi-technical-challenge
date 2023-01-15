@@ -7,5 +7,11 @@
     "name": "dippi-technical-task",
     "version": "1.0.0",
     "main": "index.js",
-    "license": "MIT"
+    "license": "MIT",
+    "scripts": {
+        "start": "concurrently \"yarn workspace db-service start\""
+    },
+    "devDependencies": {
+        "concurrently": "^7.6.0"
+    }
 }
