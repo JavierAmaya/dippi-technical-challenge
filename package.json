@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "workspaces": [
+        "db-service",
+        "hello-service"
+    ],
+    "name": "dippi-technical-task",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT"
+}
