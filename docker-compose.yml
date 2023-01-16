@@ -9,7 +9,10 @@ services:
     environment:
       POSTGRES_USER: localUser
       POSTGRES_PASSWORD: localPass
-      POSTGRES_DB: localDb
+      POSTGRES_DB: dbDippi
+      PGDATA: /var/lib/postgresql/data
+    restart: always
+
   db-service:
     build:
       dockerfile: Dockerfile
@@ -18,6 +21,5 @@ services:
       - 3000:3000
     depends_on:
       - db
-    restart: always
 volumes:  
   postgres_data:

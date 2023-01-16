@@ -14,5 +14,4 @@ model Person {
   id      Int      @id @default(autoincrement())
   name   String  
   age    Int
-
 }

@@ -45,24 +45,21 @@ router.get('/addPerson',
     , async (req: Request, res: Response) => {
 
     const { name, age } = req.query;
-    // console.log(req.query)
     const person  =  await addPersonToDB(name as string, parseInt(age as string))
 
     res.status(200).send(person)
 })
 
 router.get('/helloWorld', async (req: Request, res: Response) => {
-    console.log("helloWorld")
     const person  =  await getLastItem()
 
     if (person.length == 0) {
         res.status(404).send({"msg": "No person found"})
-    } 
-
-    // calling hello-service
-    const resp = hello(person[0].name)
-
-    res.send({"msg": resp})
+    }else{
+        // calling hello-service
+        const resp = hello(person[0].name)
+        res.send({"msg": resp})
+    }
 })
 
 
