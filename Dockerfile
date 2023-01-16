@@ -1,5 +1,4 @@
 FROM node:alpine
-
 WORKDIR /app
 COPY /db-service/package*.json ./
 COPY /db-service/prisma ./prisma/
