@@ -18,7 +18,6 @@ router.get('/', async (req: Request, res: Response) => {
 })
 
 async function addPersonToDB(name: string, age: number){
-    // console.log(name, age)
     const person: Person = await prisma.person.create({
         data: {
             name: name,
@@ -53,7 +52,7 @@ router.get('/addPerson',
 })
 
 router.get('/helloWorld', async (req: Request, res: Response) => {
-
+    console.log("helloWorld")
     const person  =  await getLastItem()
 
     if (person.length == 0) {

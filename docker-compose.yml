@@ -10,6 +10,14 @@ services:
       POSTGRES_USER: localUser
       POSTGRES_PASSWORD: localPass
       POSTGRES_DB: localDb
-
+  db-service:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    restart: always
 volumes:  
   postgres_data:
