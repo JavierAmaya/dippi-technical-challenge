@@ -41,7 +41,7 @@ router.get('/addPerson', async (req: Request, res: Response) => {
     const message = {"message": ""}
     try {
         const { name, age } = req.query;
-        console.log('name: ', name, 'age: ', age)
+        
         if(name == undefined || name == "" || age == undefined || age == "") {
             message.message = "Incomplete parameters"
             res.status(400).send(message)
