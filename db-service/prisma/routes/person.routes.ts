@@ -37,6 +37,7 @@ async function getLastItem() {
     return person;
 }
 
+// This should be a POST method, but to follow the documentation I will leave it as a GET method
 router.get('/addPerson', async (req: Request, res: Response) => {
     const message = {"message": ""}
     try {
