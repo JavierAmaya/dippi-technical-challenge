@@ -1,94 +1,76 @@
-Dippi Technical Challenge
+# Dippi Technical Challenge
 
 Node Express service, using Prisma with ORM, Postgresql as database and Yarn Workspaces to handle a mono-repo architecture.
 
-Usage
-Requirements
-NodeJs 14.X.X
-NPM 8.1.4
+## Usage Requirements
 
-Prepare enviroment
+ 1. NodeJs 14.X.X
+ 2. NPM 8.1.4
 
-Install Node and NPM if not installed
-Clone this repo
-git clone https://github.com/JavierAmaya/dippi-technical-challenge.git
+## Prepare enviroment
 
-Go to project
-cd dippi-technical-challenge
+ 1. Install Node and NPM if not installed.
+ 2.  Clone this repo git clone  
+ 
+    https://github.com/JavierAmaya/dippi-technical-challenge.git
 
-Please make sure you have an .env file with the following configuration in the path /dippi-technical-challenge/db-service
-if not you can create it:
+## Go to project 
 
-DATABASE_URL="postgresql://localUser:localPass@db/dbDippi?schema=public"
+`cd dippi-technical-challenge`
 
-Create docker build 
-docker-compose build 
+Please make sure you have an .env file with the following configuration in the path /dippi-technical-challenge/db-service if not you can create it:
 
-Run project 
-docker-compose up -d
+    DATABASE_URL="postgresql://localUser:localPass@db/dbDippi?schema=public"
+    
+## Create docker build 
 
-Defined endpoints
-These are examples:
+    docker-compose build
 
-1. Endpoint adding a new person in the database
+## Run project 
 
-Method: GET
-Request: http://localhost:3000/person/addPerson?name=Victor Javier Amaya Matute&age=24
-Validations in the request:
+    docker-compose up -d
+    
+## Defined endpoints, these are examples:
 
-Parameter: Name 
-Max length: 50
-Variable that only accepts letters, and a maximum of 50 characters, there is no defined recommended number for the total number of characters, but given statistics from other systems, 50 is taken as an average.
+##  1. Endpoint adding a new person in the database
 
-Parameter: Age
-Max length: 3
-Valid only receive integers, does not allow floating numbers, or negative.
+ 1. `GET Request: [http://localhost:3000/person/addPerson?name=Victor](http://localhost:3000/person/addPerson?name=Victor) Javier Amaya Matute&age=24`
 
-Response:
-{
-    "id": 1,
-    "name": "Victor Javier Amaya Matute",
-    "age": 24
-}
+## Validations in the request:
 
+**Parameter**: **Name** Max length: 50 Variable that only accepts letters, and a maximum of 50 characters, there is no defined recommended number for the total number of characters, but given statistics from other systems, 50 is taken as an average.
 
-2. Endpoint helloWorld
+**Parameter**: **Age** Max length: 3 Valid only receive integers, does not allow floating numbers, or negative.
+
+    Response: { "id": 1, "name": "Victor Javier Amaya Matute", "age": 24 }
+
+## 2. Endpoint helloWorld 
+
 This endpoint calls a function Hello(name: string) that lives in another hello-hello workspace, retrieves the last record in the PostgreSQL database, extracts its name field, and uses it as an argument to the Hello function. In case the database is empty, it returns a controlled error message.
 
-Method: GET
-Request: http://localhost:3000/person/helloWorld
-Parameters: None
+    GET Request: [http://localhost:3000/person/helloWorld](http://localhost:3000/person/helloWorld)
 
-Response:
+**Parameters**: None
 
-If  records exist:
+**Response:**
 
-{
-    "msg": "Hello Victor!"
-}
+If records exist:
+
+    { "msg": "Hello Victor!" }
 
 else
 
-{
-    "msg": "No person found"
-}
+    { "msg": "No person found" }
 
+## Endpoint Get Persons 
 
-3. Endpoint Get Persons
 Endpoint that returns all the records created in the database
 
-Method: GET
-Request: http://localhost:3000/person
-Response:
-[
-    {
-        "id": 1,
-        "name": "123",
-        "age": 20
-    },
-    {
-        "id": 2,
-        "name": "Victor",
-        "age": 22
-    }
-]
+    GET Request:  [http://localhost:3000/person](http://localhost:3000/person)  
+
+    Response: [ { "id": 1, "name": "123", "age": 20 }, { "id": 2, "name": "Victor", "age": 22 } ]
+
+
+
+
+
