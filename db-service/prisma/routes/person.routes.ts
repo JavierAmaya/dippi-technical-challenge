@@ -37,19 +37,31 @@ async function getLastItem() {
     return person;
 }
 
-router.get('/addPerson', 
-    [
-        check('name').isLength({max: 100}),
-        check('age').isInt({min: 0, max: 100})
-    ]
-    , async (req: Request, res: Response) => {
-
-    const { name, age } = req.query;
-    const person  =  await addPersonToDB(name as string, parseInt(age as string))
-
-    res.status(200).send(person)
+router.get('/addPerson', async (req: Request, res: Response) => {
+    const message = {"message": ""}
+    try {
+        const { name, age } = req.query;
+        console.log('name: ', name, 'age: ', age)
+        if(name == undefined || name == "" || age == undefined || age == "") {
+            message.message = "Incomplete parameters"
+            res.status(400).send(message)
+        }else{
+            const isNameValid = /^[a-zA-Z\s]+$/i.test(name.toString());
+            const isAgeValid = /^\d+$/.test(age.toString());
+            if(!isNameValid || !isAgeValid || name.toString().length > 50 || age.toString().length > 3) {
+                message.message = "The data types sent are incorrect, the parameter name must be string(50 max) and the parameter age(3 max) must be an int."
+                res.status(400).send(message)
+            }else{
+                const person = await addPersonToDB(name as string, parseInt(age as string));
+                res.status(200).json(person);
+            }
+        }
+        
+    } catch (error) {
+        res.status(400).json(message);
+    }
 })
-
+        
 router.get('/helloWorld', async (req: Request, res: Response) => {
     const person  =  await getLastItem()
 
